@@ -50,6 +50,17 @@ runs, 46 conditions and two metrics. `data/norman/regime_manifest.csv` contains
 the eight fields required for post-inference joining; internal source paths and
 unused operational fields have been excluded from the public artifact.
 
+## Representative output
+
+![Conditional-risk trajectories, pairwise crossovers, selection regret and coordinate ablations](docs/benchmark_composition_landscape.png)
+
+The preview above is generated from the distributed condition-level tables by
+`scripts/plot_benchmark_composition.py`. It shows the six-model conditional-risk
+trajectories, the six pairwise crossovers observed among 15 comparisons, the
+finite-panel regret of retaining the full-test-selected model and the
+response-coordinate ablations. It is a visualization of the frozen replay, not
+an additional dataset or independently estimated result.
+
 ## Reproduce the analysis
 
 The frozen replay environment uses Python 3.11.14 and uv 0.11.16. Install
@@ -97,7 +108,7 @@ identifiers and do not indicate a journal-specific software dependency.
 Project source code is licensed under Apache License 2.0. The derived tabular
 artifacts are offered under CC BY 4.0 to the extent that the author holds rights
 in them; upstream data remain subject to their original terms. See
-`DATA_LICENSE.md`, `THIRD_PARTY_NOTICES.md` and `CITATION.cff`.
+`DATA_LICENSE.md`, `THIRD_PARTY_NOTICES.md`, `SECURITY.md` and `CITATION.cff`.
 
 ## Contact
 

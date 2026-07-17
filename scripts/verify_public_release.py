@@ -60,8 +60,9 @@ def main() -> int:
     errors: list[str] = []
     required = [
         "README.md", "LICENSE", "DATA_LICENSE.md", "THIRD_PARTY_NOTICES.md",
-        "CITATION.cff", "pyproject.toml", "uv.lock",
+        "SECURITY.md", "CITATION.cff", "pyproject.toml", "uv.lock",
         "RELEASE_FILE_MANIFEST.tsv", "RELEASE_FILE_MANIFEST.sha256",
+        "docs/benchmark_composition_landscape.png",
         "configs/benchmark_composition_policy_v1.json",
         "configs/public_run_registry_v1.yaml",
         "data/norman/condition_metrics.tsv", "data/norman/regime_manifest.csv",
