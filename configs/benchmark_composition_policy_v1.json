@@ -1,0 +1,97 @@
+{
+  "schema_version": "crg_benchmark_composition_policy_v1",
+  "status": "FROZEN_BEFORE_SECONDARY_CALCULATION",
+  "frozen_at_jst": "2026-07-17",
+  "analysis_role": "post_result_secondary_analysis",
+  "producer_baseline_commit": "979bc0b48d0c267b7cc160aeddbd51f18249dcb5",
+  "inputs": {
+    "condition_metrics": {
+      "path": "data/norman/condition_metrics.tsv",
+      "sha256": "34f78714a232bb644dd3b0a17f2c03bacbf6c71e4a486f52b0cfbb0ffee6fcc0"
+    },
+    "regime_manifest": {
+      "path": "data/norman/regime_manifest.csv",
+      "sha256": "76cbf7b34f74d3ea7d361899c42e49c86578eb3db92c95f1409a4af11752cb85"
+    },
+    "run_registry": {
+      "path": "configs/public_run_registry_v1.yaml",
+      "sha256": "4f406f0f9dd0689663276e8191a1947c9711be7d29496697ed3e3d6a8c3de6d8"
+    }
+  },
+  "registered_run_ids": [
+    "NM-NORMAN-FORMAL-LIN-S245",
+    "NM-NORMAN-FORMAL-LIN-S246",
+    "NM-NORMAN-FORMAL-LIN-S247",
+    "NM-NORMAN-FORMAL-DEC-S245",
+    "NM-NORMAN-FORMAL-LAT-S245",
+    "NM-NORMAN-FORMAL-CPA-S245",
+    "NM-NORMAN-FORMAL-BIO-S245",
+    "NM-NORMAN-FORMAL-BIO-S246",
+    "NM-NORMAN-FORMAL-BIO-S247",
+    "NM-NORMAN-FORMAL-SAMS-S137"
+  ],
+  "model_level_collapse": {
+    "group_by": [
+      "dataset_id",
+      "split_id",
+      "condition_id",
+      "model_id",
+      "metric_name",
+      "metric_direction"
+    ],
+    "seed_aggregation": "arithmetic_mean",
+    "seeds_are_sampling_units": false,
+    "models_receive_equal_weight": true
+  },
+  "focal_seed_run_ids": [
+    "NM-NORMAN-FORMAL-LIN-S245",
+    "NM-NORMAN-FORMAL-LIN-S246",
+    "NM-NORMAN-FORMAL-LIN-S247",
+    "NM-NORMAN-FORMAL-BIO-S245",
+    "NM-NORMAN-FORMAL-BIO-S246",
+    "NM-NORMAN-FORMAL-BIO-S247"
+  ],
+  "primary_metric": "relative_l2_response_error",
+  "secondary_metric": "gene_wise_spearman",
+  "primary_arms": [
+    "high_additivity_violation_only",
+    "high_effect_only"
+  ],
+  "composition_grid": {
+    "start": 0.0,
+    "stop": 1.0,
+    "step": 0.001
+  },
+  "tie_absolute_tolerance": 1e-12,
+  "resampling": {
+    "generator": "PCG64",
+    "draws": 10000,
+    "seed": 2026071701,
+    "quantiles": [0.025, 0.975],
+    "sampling_unit": "condition_within_primary_arm"
+  },
+  "geometry_ablations": [
+    "continuous_intercept",
+    "continuous_effect_rank",
+    "continuous_additivity_violation_rank",
+    "continuous_additive_axes",
+    "continuous_axis_interaction",
+    "magnitude_only_binary",
+    "additivity_violation_only_binary",
+    "frozen_two_axis_joint",
+    "permuted_joint_labels"
+  ],
+  "permutation": {
+    "generator": "PCG64",
+    "draws": 10000,
+    "seed": 2026071702,
+    "preserve_category_sizes": true
+  },
+  "claim_boundaries": {
+    "population_inference": false,
+    "universal_model_ranking": false,
+    "mechanistic_interaction": false,
+    "prospective_decision_benefit": false,
+    "cross_task_generality": false
+  }
+}

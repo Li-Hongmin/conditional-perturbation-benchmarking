@@ -1,0 +1,70 @@
+schema_version: crg_public_run_registry_v1
+status: FROZEN_PUBLIC_RECORD
+dataset_id: norman_2019_matched_combination_prediction
+source_registry_sha256: 509a7a141bea84f48072adec2a85d72ea1c6fb5863c27d305ea2ce1c70b2b85b
+science_contract:
+  requested_conditions: 46
+  canonical_features: 1931
+  primary_metric: relative_l2_response_error
+  secondary_metric: gene_wise_spearman
+  focal_model_a: pb_biolord_star
+  focal_model_b: pb_linear_additive
+  result_based_replacement: forbidden
+  performance_driven_retry: forbidden
+runs:
+  - run_id: NM-NORMAN-FORMAL-LIN-S245
+    model_id: pb_linear_additive
+    family: linear_additive
+    seed: 245
+    config_sha256: 4a29cc54ae910fb05db2ebd5d663f6a64dc95e3ab6249c66fcadee5d8e2504f3
+  - run_id: NM-NORMAN-FORMAL-LIN-S246
+    model_id: pb_linear_additive
+    family: linear_additive
+    seed: 246
+    config_sha256: 4a29cc54ae910fb05db2ebd5d663f6a64dc95e3ab6249c66fcadee5d8e2504f3
+  - run_id: NM-NORMAN-FORMAL-LIN-S247
+    model_id: pb_linear_additive
+    family: linear_additive
+    seed: 247
+    config_sha256: 4a29cc54ae910fb05db2ebd5d663f6a64dc95e3ab6249c66fcadee5d8e2504f3
+  - run_id: NM-NORMAN-FORMAL-DEC-S245
+    model_id: pb_decoder_only
+    family: neural_decoder
+    seed: 245
+    config_sha256: 20611fdf9bb3e1d2fd10d3f6b114d6fbf19dc9b19712fd54ed867d54a3644a78
+  - run_id: NM-NORMAN-FORMAL-LAT-S245
+    model_id: pb_latent_additive
+    family: latent_additive
+    seed: 245
+    config_sha256: d282060062f8425ac9f8601fddb793a8b0154860572274ba3c458977ef80d25f
+  - run_id: NM-NORMAN-FORMAL-CPA-S245
+    model_id: pb_cpa
+    family: conditional_compositional
+    seed: 245
+    config_sha256: 28c060985f71ffc1309f0c4749f49a8624c403fe43bd7f25cd475bf213bdcc7c
+  - run_id: NM-NORMAN-FORMAL-BIO-S245
+    model_id: pb_biolord_star
+    family: latent_causal_representation
+    seed: 245
+    config_sha256: 38518ddbc7616d1c402fe18a08c203861a06cb9cfbd59cc283e4290817aba2a2
+  - run_id: NM-NORMAN-FORMAL-BIO-S246
+    model_id: pb_biolord_star
+    family: latent_causal_representation
+    seed: 246
+    config_sha256: 38518ddbc7616d1c402fe18a08c203861a06cb9cfbd59cc283e4290817aba2a2
+  - run_id: NM-NORMAN-FORMAL-BIO-S247
+    model_id: pb_biolord_star
+    family: latent_causal_representation
+    seed: 247
+    config_sha256: 38518ddbc7616d1c402fe18a08c203861a06cb9cfbd59cc283e4290817aba2a2
+  - run_id: NM-NORMAN-FORMAL-SAMS-S137
+    model_id: pb_sparse_additive_vae
+    family: sparse_additive_vae
+    seed: 137
+    config_sha256: 2b629e7827d821ee3057c7487d04e21a71cfa26825f7bf0a8896f3a0bc7f54b6
+public_boundary:
+  contains_raw_single_cell_data: false
+  contains_model_checkpoints: false
+  contains_cloud_resource_locations: false
+  contains_credentials: false
+  third_party_implementations_redistributed: false
