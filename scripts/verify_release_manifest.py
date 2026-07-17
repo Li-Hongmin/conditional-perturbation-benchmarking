@@ -14,7 +14,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "RELEASE_FILE_MANIFEST.tsv"
 ANCHOR = ROOT / "RELEASE_FILE_MANIFEST.sha256"
 EXCLUDED_PARTS = {
-    ".git", ".pytest_cache", ".venv", "__pycache__", "build", "dist",
+    ".git", ".pytest_cache", ".tmp", ".venv", "__pycache__", "build", "dist",
     "replay_outputs", "replay_figure",
 }
 EXCLUDED_NAMES = {MANIFEST.name, ANCHOR.name, ".DS_Store"}

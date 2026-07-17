@@ -178,6 +178,11 @@ def test_resampling_geometry_and_permutation_outputs_are_deterministic():
     permuted = summary.loc[summary["analysis_type"].eq("permutation_reference")]
     assert set(permuted["permutation_draws"]) == {30}
     assert permuted["permutation_exceedance_fraction"].between(0, 1).all()
+    float_columns = summary.select_dtypes(include=[np.floating]).columns
+    pd.testing.assert_frame_equal(
+        summary.loc[:, float_columns],
+        summary.loc[:, float_columns].round(12),
+    )
 
 
 def _hash(path: Path) -> str:

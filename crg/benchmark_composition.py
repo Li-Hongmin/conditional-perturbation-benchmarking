@@ -674,6 +674,14 @@ def build_analysis(
     )
     composition_tables, metadata = _composition_tables(joined, metrics, policy)
     geometry_summary, geometry_strata = _geometry_ablations(joined, policy)
+    # Least-squares diagnostics can differ at approximately machine precision
+    # across BLAS implementations.  Freeze the derived summary at a precision
+    # far beyond that reported in the manuscript so byte-level replay remains
+    # portable without weakening any scientific check.
+    geometry_float_columns = geometry_summary.select_dtypes(include=[np.floating]).columns
+    geometry_summary.loc[:, geometry_float_columns] = geometry_summary.loc[
+        :, geometry_float_columns
+    ].round(12)
     tables: dict[str, pd.DataFrame] = {
         "model_condition_metrics_collapsed.tsv": collapsed,
         **composition_tables,
