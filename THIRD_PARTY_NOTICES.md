@@ -16,3 +16,13 @@ respective licenses. The project license does not supersede those licenses.
 
 Transitive dependencies are recorded in `uv.lock`; this table lists the
 project's direct declared dependencies.
+
+## Upstream research software and data
+
+- Norman combinatorial Perturb-seq: GEO `GSE133344`; Norman et al., Science
+  (2019), DOI `10.1126/science.aax4438`. The expression matrix is not
+  redistributed.
+- PerturBench: `https://github.com/altoslabs/perturbench`, commit
+  `4825e392294768da4b35561a76502c7006d6453e`, BSD-3-Clause with
+  model-specific notices. Its implementations and configuration files are not
+  redistributed by this public replay; only their names and hashes are cited.

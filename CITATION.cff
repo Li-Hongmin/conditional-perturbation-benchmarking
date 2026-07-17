@@ -10,5 +10,10 @@ authors:
   - family-names: Li
     given-names: Hongmin
     orcid: "https://orcid.org/0000-0003-0228-0600"
-    affiliation: "Institute of Science Tokyo and The University of Tokyo"
+    affiliation: "School of Life Science and Technology, Institute of Science Tokyo; Department of Computational Biology and Medical Sciences, Graduate School of Frontier Sciences, The University of Tokyo"
     email: "lihongmin@edu.k.u-tokyo.ac.jp"
+keywords:
+  - single-cell perturbation prediction
+  - combinatorial perturbation
+  - conditional benchmarking
+  - benchmark composition

@@ -59,7 +59,8 @@ def text_files() -> list[Path]:
 def main() -> int:
     errors: list[str] = []
     required = [
-        "README.md", "LICENSE", "DATA_LICENSE.md", "THIRD_PARTY_NOTICES.md",
+        "README.md", "LICENSE", "DATA_LICENSE.md", "DATA_DICTIONARY.md",
+        "UPSTREAM_PROVENANCE.md", "THIRD_PARTY_NOTICES.md",
         "SECURITY.md", "CITATION.cff", "pyproject.toml", "uv.lock",
         "RELEASE_FILE_MANIFEST.tsv", "RELEASE_FILE_MANIFEST.sha256",
         "docs/benchmark_composition_landscape.png",

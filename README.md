@@ -43,6 +43,7 @@ data/norman/         derived condition metrics and regime annotations
 expected/            deterministic scientific-output checksums
 scripts/             replay, verification and figure-building entry points
 tests/               focused contract and determinism tests
+DATA_DICTIONARY.md   column definitions, keys, units and missing-value rules
 ```
 
 `data/norman/condition_metrics.tsv` contains 920 metric rows: 10 registered
@@ -91,11 +92,20 @@ file except the manifest and its detached checksum.
 ## Data provenance
 
 The condition identities originate from the Norman et al. combinatorial
-Perturb-seq study (Science, 2019; DOI:
+Perturb-seq study (Science, 2019; GEO GSE133344; DOI:
 [10.1126/science.aax4438](https://doi.org/10.1126/science.aax4438)). The
 repository distributes only derived condition-level metrics and calibrated
 annotations required for this replay; it does not redistribute the source
 single-cell expression matrix.
+
+Model execution used PerturBench from
+[altoslabs/perturbench](https://github.com/altoslabs/perturbench) at commit
+`4825e392294768da4b35561a76502c7006d6453e`. The exact Norman experiment
+configuration paths, SHA-256 identities and frozen input hashes are recorded in
+`UPSTREAM_PROVENANCE.md`; run-to-configuration hashes are retained in
+`configs/public_run_registry_v1.yaml`. PerturBench source is BSD-3-Clause with
+additional model-specific notices; no PerturBench implementation is vendored
+here. The processed expression matrix and split are not redistributed.
 
 The public run registry records the identities, model families, seeds and
 configuration hashes of the completed runs whose condition-level outputs enter
@@ -105,9 +115,10 @@ identifiers and do not indicate a journal-specific software dependency.
 
 ## Licensing and citation
 
-Project source code is licensed under Apache License 2.0. The derived tabular
-artifacts are offered under CC BY 4.0 to the extent that the author holds rights
-in them; upstream data remain subject to their original terms. See
+Project source code is licensed under Apache License 2.0. Author-generated
+derived tables and the generated figure preview are offered under CC BY 4.0 to
+the extent that the author holds rights in them; upstream data remain subject
+to their original terms. See
 `DATA_LICENSE.md`, `THIRD_PARTY_NOTICES.md`, `SECURITY.md` and `CITATION.cff`.
 
 ## Contact
