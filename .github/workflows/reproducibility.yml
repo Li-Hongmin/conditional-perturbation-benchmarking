@@ -1,0 +1,38 @@
+name: reproducibility
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Install the locked environment
+        run: uv sync --frozen --all-groups
+      - name: Test the analysis contract
+        run: uv run pytest -q
+      - name: Replay deterministic scientific outputs
+        run: |
+          uv run python scripts/run_benchmark_composition.py \
+            --repository-root . \
+            --producer-commit "$GITHUB_SHA" \
+            --output-dir replay_outputs
+      - name: Verify scientific output checksums
+        run: uv run python scripts/verify_reproduction.py --output-dir replay_outputs
+      - name: Rebuild the composition figure
+        run: |
+          uv run python scripts/plot_benchmark_composition.py \
+            --input-dir replay_outputs \
+            --output-dir replay_figure
+      - name: Audit the public boundary
+        run: uv run python scripts/verify_public_release.py
+      - name: Verify the release file manifest
+        run: uv run python scripts/verify_release_manifest.py
