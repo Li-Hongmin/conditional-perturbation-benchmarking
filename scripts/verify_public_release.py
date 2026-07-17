@@ -31,7 +31,7 @@ FORBIDDEN = {
         r"[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uac00-\ud7af\uf900-\ufaff]"
     ),
     "journal or review staging language": re.compile(
-        r"\b(?:Nature Computational Science|Nature Methods|reviewer replay|confidential review)\b",
+        r"\b(?:Nature Computational Science|Nature Methods|reviewer (?:replay|package)|confidential review(?:er)?)\b",
         re.IGNORECASE,
     ),
     "retired internal path": re.compile(r"(?:nature_methods|results/v0_3|configs/nature)", re.IGNORECASE),

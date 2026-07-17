@@ -30,7 +30,6 @@ frozen predictions. It does not redistribute those materials.
   `1c99040b7d4b753bf00b6da83430b9936824b27cc238793e827b7dd9e641bcc9`
 - Common-feature count: 1,931
 
-The source matrix, split file, model implementations and checkpoints are not
-part of this public post-result replay. The confidential reviewer package
-contains the author-generated orchestration source and the exact PerturBench
-configuration files under their upstream licence.
+The source matrix, split file, model implementations, checkpoints, training
+orchestration and upstream configuration files are not part of this public
+post-result replay. Their source identities and hashes are recorded above.
