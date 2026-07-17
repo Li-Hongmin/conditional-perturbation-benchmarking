@@ -16,14 +16,20 @@ TEXT_SUFFIXES = {
     "", ".cff", ".csv", ".gitignore", ".json", ".md", ".py", ".toml",
     ".tsv", ".txt", ".yaml", ".yml",
 }
-SKIP_PARTS = {".git", ".pytest_cache", ".venv", "__pycache__", "replay_outputs", "replay_figure"}
+SKIP_PARTS = {
+    ".git", ".pytest_cache", ".tmp", ".venv", "__pycache__",
+    "replay_outputs", "replay_figure",
+}
 FORBIDDEN = {
-    "local absolute path": re.compile(r"/(?:Users|Volumes)/"),
+    "local absolute path": re.compile(r"/(?:Users|Volumes|private)/|/home/[^/\s]+/"),
     "private key": re.compile(r"-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----"),
     "cloud bucket": re.compile(r"(?:gs://|storage\.googleapis\.com)"),
     "GitHub token": re.compile(r"\b(?:ghp|github_pat)_[A-Za-z0-9_]{20,}\b"),
     "OpenAI token": re.compile(r"\bsk-[A-Za-z0-9_-]{20,}\b"),
-    "CJK text": re.compile(r"[\u3400-\u9fff]"),
+    "AWS access key": re.compile(r"\bAKIA[0-9A-Z]{16}\b"),
+    "CJK text": re.compile(
+        r"[\u3040-\u30ff\u3400-\u4dbf\u4e00-\u9fff\uac00-\ud7af\uf900-\ufaff]"
+    ),
     "journal or review staging language": re.compile(
         r"\b(?:Nature Computational Science|Nature Methods|reviewer replay|confidential review)\b",
         re.IGNORECASE,

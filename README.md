@@ -1,5 +1,9 @@
 # Conditional perturbation benchmarking
 
+[![Reproducibility](https://github.com/Li-Hongmin/conditional-perturbation-benchmarking/actions/workflows/reproducibility.yml/badge.svg)](https://github.com/Li-Hongmin/conditional-perturbation-benchmarking/actions/workflows/reproducibility.yml)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
+[![Data license: CC BY 4.0](https://img.shields.io/badge/Data-CC%20BY%204.0-lightgrey.svg)](DATA_LICENSE.md)
+
 This repository provides a deterministic replay of a finite-benchmark analysis
 that asks how the composition of cellular response regimes changes comparative
 performance among single-cell perturbation predictors.
@@ -48,7 +52,8 @@ unused operational fields have been excluded from the public artifact.
 
 ## Reproduce the analysis
 
-Requirements: Python 3.11 and [uv](https://docs.astral.sh/uv/).
+The frozen replay environment uses Python 3.11.14 and uv 0.11.16. Install
+[uv](https://docs.astral.sh/uv/) before running the commands below.
 
 ```bash
 uv sync --frozen --all-groups
