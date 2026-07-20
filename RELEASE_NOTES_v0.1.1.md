@@ -20,7 +20,7 @@ inspectable without repeating model training.
 - All 11 scientific tables reproduce byte for byte.
 - The analysis record passes its semantic contract.
 - The public PNG reproduces byte for byte.
-- Public-boundary and 52-file release-manifest audits pass.
+- Public-boundary and 53-file release-manifest audits pass.
 
 ## Scope
 
