@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "Please cite this software and the associated manuscript when using these analyses."
 title: "Conditional perturbation benchmarking"
 type: software
-version: 0.1.0
-date-released: 2026-07-17
+version: 0.1.1
+date-released: 2026-07-20
 license: Apache-2.0
 repository-code: "https://github.com/Li-Hongmin/conditional-perturbation-benchmarking"
 authors:
