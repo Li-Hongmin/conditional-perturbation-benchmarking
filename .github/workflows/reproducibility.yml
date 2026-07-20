@@ -45,8 +45,9 @@ jobs:
           uv run python scripts/plot_benchmark_composition.py \
             --input-dir replay_outputs \
             --output-dir replay_figure
-          cmp replay_figure/benchmark_composition_landscape.png \
-            docs/benchmark_composition_landscape.png
+          uv run python scripts/verify_figure_preview.py \
+            --candidate replay_figure/benchmark_composition_landscape.png \
+            --reference docs/benchmark_composition_landscape.png
       - name: Audit the public boundary
         run: uv run python scripts/verify_public_release.py
       - name: Verify the release file manifest
@@ -59,6 +60,6 @@ jobs:
             echo "- focused analysis and result-contract tests"
             echo "- 11 scientific tables reproduced byte for byte"
             echo "- tracked result snapshot and compact summaries verified"
-            echo "- composition preview reproduced byte for byte"
+            echo "- composition preview dimensions and decoded visual content verified"
             echo "- public-boundary and release-manifest audits passed"
           } >> "$GITHUB_STEP_SUMMARY"

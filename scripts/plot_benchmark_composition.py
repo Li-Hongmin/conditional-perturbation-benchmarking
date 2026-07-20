@@ -67,7 +67,9 @@ def _configure_matplotlib() -> None:
     mpl.rcParams.update(
         {
             "font.family": "sans-serif",
-            "font.sans-serif": ["Arial", "Helvetica", "DejaVu Sans", "sans-serif"],
+            # DejaVu Sans ships with Matplotlib.  Pinning it avoids platform-
+            # dependent fallback to Arial on macOS and DejaVu Sans on Linux.
+            "font.sans-serif": ["DejaVu Sans"],
             "font.size": 6.2,
             "axes.labelsize": 6.4,
             "axes.titlesize": 7.0,
