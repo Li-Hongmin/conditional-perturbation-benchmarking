@@ -10,6 +10,8 @@ import sys
 
 import pandas as pd
 
+from verify_public_results import verify as verify_public_results
+
 
 ROOT = Path(__file__).resolve().parents[1]
 TEXT_SUFFIXES = {
@@ -60,14 +62,18 @@ def main() -> int:
     errors: list[str] = []
     required = [
         "README.md", "LICENSE", "DATA_LICENSE.md", "DATA_DICTIONARY.md",
+        "RESULTS.md", "REPRODUCIBILITY.md", "COMPUTE_REQUIREMENTS.md",
         "UPSTREAM_PROVENANCE.md", "THIRD_PARTY_NOTICES.md",
         "SECURITY.md", "CITATION.cff", "pyproject.toml", "uv.lock",
         "RELEASE_FILE_MANIFEST.tsv", "RELEASE_FILE_MANIFEST.sha256",
         "docs/benchmark_composition_landscape.png",
         "configs/benchmark_composition_policy_v1.json",
         "configs/public_run_registry_v1.yaml",
+        "configs/training_run_matrix.tsv",
         "data/norman/condition_metrics.tsv", "data/norman/regime_manifest.csv",
         "expected/EXPECTED_OUTPUT_CHECKSUMS.tsv",
+        "results/headline_summary.tsv", "results/composition_anchor_points.tsv",
+        "results/RESULT_CHECKSUMS.tsv", "results/composition/analysis_record.json",
     ]
     for relative in required:
         if not (ROOT / relative).is_file():
@@ -90,6 +96,24 @@ def main() -> int:
         ]
         if regimes.shape != (46, 8) or list(regimes.columns) != expected_columns:
             errors.append("regime manifest differs from the eight-column public contract")
+
+    training_matrix_path = ROOT / "configs/training_run_matrix.tsv"
+    if training_matrix_path.is_file():
+        training = pd.read_csv(training_matrix_path, sep="\t")
+        expected_training_columns = [
+            "run_id", "model_id", "family", "seed", "upstream_repository",
+            "upstream_commit", "experiment_config_path", "config_sha256",
+            "dataset_id", "split_id", "canonical_feature_count",
+            "processed_matrix_sha256", "split_sha256", "record_status",
+            "public_rerun_scope", "expected_public_output",
+        ]
+        if training.shape != (10, 16) or list(training.columns) != expected_training_columns:
+            errors.append("training run matrix differs from the 10-run public contract")
+        elif metrics_path.is_file() and set(training["run_id"]) != set(metrics["run_id"]):
+            errors.append("training run matrix and condition metrics name different runs")
+
+    result_errors = verify_public_results(ROOT, ROOT / "results", None)
+    errors.extend(f"public result snapshot: {error}" for error in result_errors)
 
     for path in text_files():
         if path.name == "verify_public_release.py":

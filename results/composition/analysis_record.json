@@ -1,0 +1,74 @@
+{
+  "claim_boundaries": {
+    "cross_task_generality": false,
+    "mechanistic_interaction": false,
+    "population_inference": false,
+    "prospective_decision_benefit": false,
+    "universal_model_ranking": false
+  },
+  "composition_grid_points": 1001,
+  "environment": {
+    "numpy": "2.4.6",
+    "pandas": "2.3.3",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.11.14",
+    "python_implementation": "CPython",
+    "scipy": "1.17.1"
+  },
+  "formulas": {
+    "composition_risk": "R_m(lambda)=lambda*mean_HA(m)+(1-lambda)*mean_HE(m)",
+    "continuous_covariates": "midrank/(n_conditions-1)-0.5",
+    "interaction_dispersion": "RMS of double-centred model-by-stratum oriented-risk matrix",
+    "selection_regret_higher": "max_m R_m(lambda)-R_aggregate_winner(lambda)",
+    "selection_regret_lower": "R_aggregate_winner(lambda)-min_m R_m(lambda)"
+  },
+  "input_sha256": {
+    "condition_metrics": "34f78714a232bb644dd3b0a17f2c03bacbf6c71e4a486f52b0cfbb0ffee6fcc0",
+    "policy": "c34cbbb33c160340b754b744921b6f3c352e9c82cc70c81ce2e46696846e72d2",
+    "regime_manifest": "76cbf7b34f74d3ea7d361899c42e49c86578eb3db92c95f1409a4af11752cb85",
+    "run_registry": "4f406f0f9dd0689663276e8191a1947c9711be7d29496697ed3e3d6a8c3de6d8"
+  },
+  "metric_names": [
+    "gene_wise_spearman",
+    "relative_l2_response_error"
+  ],
+  "models_retrained": false,
+  "n_conditions": 46,
+  "n_models": 6,
+  "n_registered_runs": 10,
+  "output_sha256": {
+    "composition_resampling_intervals.tsv": "03e262d5257625c426129edc1205ee4a417753a6f46ee7d6bed1b07142875d55",
+    "composition_risk_curves.tsv": "98cc00902f1b0781916003b5ea98a7292153ea3f2c1a3ec6db067610eda04ddc",
+    "composition_winners.tsv": "eaa250141c91aa1a546ff02c34e45d58720036e372605e4f38643a075f68e758",
+    "focal_seed_sensitivity.tsv": "d365c48e210c725850e0f04acc1fbe020fad3027e86e83886fde0725cd7e7ce8",
+    "geometry_ablation_model_strata.tsv": "789708c2b9d0538cd4ff86e44b9c8e659fda869bae08a5292114187505dfad97",
+    "geometry_ablation_summary.tsv": "19b7d0eeac9695f83991b577cfbab6412d61ceb11972ae7b5ce5623d8b7b1192",
+    "metric_sensitivity.tsv": "631f1172e7d833492fbe8cf0013c5467aabad445c9b4bea847c7ef6582e2ae3e",
+    "model_condition_metrics_collapsed.tsv": "8330642aeb285411bc6a039e4bdff5942acf1bf8a1c731798583aad45cae5403",
+    "pairwise_crossovers.tsv": "d6bfbd4f297d93685b752a61d21d624a0a976049f4751d19155673ab5e75646a",
+    "ranking_stability.tsv": "1027af47e0261b347326682b3d669e63e10b1fcd89c9986c89c09a30f39cc661",
+    "selection_regret.tsv": "88efbac3b5ec7ae363c3ed6449a270fe97a01cbfd861d34d23d8a360eb9e822d"
+  },
+  "p_values_calculated": false,
+  "permutation": {
+    "draws": 10000,
+    "generator": "PCG64",
+    "preserve_category_sizes": true,
+    "seed": 2026071702
+  },
+  "policy_schema_version": "crg_benchmark_composition_policy_v1",
+  "population_confidence_interval": false,
+  "producer_commit": "77d57d449f4e7f189bd5b0b0185490fe7f409479",
+  "resampling": {
+    "draws": 10000,
+    "generator": "PCG64",
+    "quantiles": [
+      0.025,
+      0.975
+    ],
+    "sampling_unit": "condition_within_primary_arm",
+    "seed": 2026071701
+  },
+  "schema_version": "crg_benchmark_composition_analysis_v1",
+  "status": "CALCULATED_POST_RESULT_SECONDARY_ANALYSIS"
+}

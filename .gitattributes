@@ -1,1 +1,4 @@
 data/norman/condition_metrics.tsv whitespace=-blank-at-eol
+# Preserve the byte-identical scientific replay tables. Some schema-defined
+# nullable final fields are represented by a terminal tab.
+results/composition/*.tsv whitespace=-blank-at-eol

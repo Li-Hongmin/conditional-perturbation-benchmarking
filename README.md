@@ -41,9 +41,13 @@ crg/                 analysis implementation
 configs/             frozen policy and public run identities
 data/norman/         derived condition metrics and regime annotations
 expected/            deterministic scientific-output checksums
+results/             complete tracked replay outputs and compact summaries
 scripts/             replay, verification and figure-building entry points
 tests/               focused contract and determinism tests
 DATA_DICTIONARY.md   column definitions, keys, units and missing-value rules
+RESULTS.md           zero-compute result guide and complete output map
+REPRODUCIBILITY.md   inspection, replay and training-provenance tiers
+COMPUTE_REQUIREMENTS.md  measured public-replay resource envelope
 ```
 
 `data/norman/condition_metrics.tsv` contains 920 metric rows: 10 registered
@@ -62,6 +66,11 @@ finite-panel regret of retaining the full-test-selected model and the
 response-coordinate ablations. It is a visualization of the frozen replay, not
 an additional dataset or independently estimated result.
 
+Readers who do not want to install the software can inspect the complete
+checksum-protected output snapshot under `results/`. See
+[`RESULTS.md`](RESULTS.md) for headline values, anchor points and a description
+of all 11 scientific tables.
+
 ## Reproduce the analysis
 
 The frozen replay environment uses Python 3.11.14 and uv 0.11.16. Install
@@ -75,6 +84,8 @@ uv run python scripts/run_benchmark_composition.py \
   --output-dir replay_outputs
 uv run python scripts/verify_reproduction.py \
   --output-dir replay_outputs
+uv run python scripts/verify_public_results.py \
+  --replay-output-dir replay_outputs
 uv run python scripts/plot_benchmark_composition.py \
   --input-dir replay_outputs \
   --output-dir replay_figure
@@ -86,6 +97,12 @@ The verification command requires exact SHA-256 agreement for all 11
 scientific TSV outputs. `analysis_record.json` also records the producer commit,
 software versions and operating system; it is therefore checked semantically
 rather than required to be byte-identical across environments.
+The tracked result verifier additionally proves that the public intermediate
+tables match a fresh replay and that the compact summaries are derivable from
+those tables. [`REPRODUCIBILITY.md`](REPRODUCIBILITY.md) separates zero-compute
+inspection, low-compute replay and upstream model-training provenance;
+[`COMPUTE_REQUIREMENTS.md`](COMPUTE_REQUIREMENTS.md) reports the measured
+resource envelope for the public replay.
 `RELEASE_FILE_MANIFEST.tsv` records the size and SHA-256 of every distributed
 file except the manifest and its detached checksum.
 
@@ -112,6 +129,10 @@ configuration hashes of the completed runs whose condition-level outputs enter
 the analysis. It is not a substitute for the omitted training code or
 checkpoints. Historical `NM-` prefixes are retained as opaque frozen run
 identifiers and do not indicate a journal-specific software dependency.
+The corresponding row-level training provenance is available in
+`configs/training_run_matrix.tsv`; it supports a best-effort upstream rerun but
+does not imply that model training is byte-deterministic or executable from
+this post-result repository alone.
 
 ## Licensing and citation
 

@@ -1,8 +1,8 @@
 # License for derived tabular artifacts
 
-The author-generated derived tabular files under `data/`, the deterministic
-expected-output ledger under `expected/` and the generated figure preview under
-`docs/` are made available under the Creative Commons
+The author-generated derived tabular files under `data/` and `results/`, the
+deterministic expected-output ledger under `expected/` and the generated figure
+preview under `docs/` are made available under the Creative Commons
 Attribution 4.0 International license (CC BY 4.0), to the extent that the author
 holds rights in those materials.
 

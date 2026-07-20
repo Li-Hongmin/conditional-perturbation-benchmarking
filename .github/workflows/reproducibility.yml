@@ -7,9 +7,14 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: reproducibility-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   replay:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
@@ -31,12 +36,29 @@ jobs:
             --output-dir replay_outputs
       - name: Verify scientific output checksums
         run: uv run python scripts/verify_reproduction.py --output-dir replay_outputs
+      - name: Compare the replay with the tracked result snapshot
+        run: |
+          uv run python scripts/verify_public_results.py \
+            --replay-output-dir replay_outputs
       - name: Rebuild the composition figure
         run: |
           uv run python scripts/plot_benchmark_composition.py \
             --input-dir replay_outputs \
             --output-dir replay_figure
+          cmp replay_figure/benchmark_composition_landscape.png \
+            docs/benchmark_composition_landscape.png
       - name: Audit the public boundary
         run: uv run python scripts/verify_public_release.py
       - name: Verify the release file manifest
         run: uv run python scripts/verify_release_manifest.py
+      - name: Summarize the verified evidence
+        run: |
+          {
+            echo "## Reproducibility checks"
+            echo ""
+            echo "- focused analysis and result-contract tests"
+            echo "- 11 scientific tables reproduced byte for byte"
+            echo "- tracked result snapshot and compact summaries verified"
+            echo "- composition preview reproduced byte for byte"
+            echo "- public-boundary and release-manifest audits passed"
+          } >> "$GITHUB_STEP_SUMMARY"
